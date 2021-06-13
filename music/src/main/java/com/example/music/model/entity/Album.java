@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@ToString(exclude = {"containList"})
+@ToString(exclude = {"containList", "releaseCompany"})
 @EntityListeners(AuditingEntityListener.class)
 @Builder
 @Accessors(chain = true)
@@ -27,5 +27,7 @@ public class Album {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "album")
     private List<Contain> containList;
 
+    @ManyToOne
+    private ReleaseCompany releaseCompany;
 }
 
