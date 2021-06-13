@@ -5,27 +5,25 @@ import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+
 @ToString(exclude = {"containList"})
 @EntityListeners(AuditingEntityListener.class)
 @Builder
 @Accessors(chain = true)
-public class Album {
 
+public class Track {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String albumName;
-    private LocalDate releaseDate;
+    private String trackName;
+    private int likes;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "album")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "track")
     private List<Contain> containList;
-
 }
-
